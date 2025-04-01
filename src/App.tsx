@@ -3,7 +3,7 @@ import PokemonList from "./components/PokemonList";
 import PokemonDetails from "./components/PokemonDetails";
 
 function App() {
-  const [selectedPokemon, selectPokemon] = useState(undefined);
+  const [selectedPokemon, selectPokemon] = useState<string | undefined>(undefined);
 
   return (
     <>

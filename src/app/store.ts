@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { fakePokemonDetailData, fakePokemonListing } from '../data/pokemon';
+import type { PokemonListingType, PokemonDetailType } from '../data/pokemon';
 
 export const pokemonApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pokeapi.co/api/v2',
   }),
   endpoints: (build) => ({
-    pokemonList: build.query({
+    pokemonList: build.query<PokemonListingType, void>({
       query() {
         return {
           url: '/pokemon',
@@ -16,7 +16,7 @@ export const pokemonApi = createApi({
         };
       },
     }),
-    pokemonDetails: build.query({
+    pokemonDetails: build.query<PokemonDetailType, { name: string }>({
       query({ name }) {
         return `/pokemon/${name}`;
       },

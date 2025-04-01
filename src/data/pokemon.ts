@@ -1,5 +1,5 @@
 // data copy & pasted from https://pokeapi.co/api/v2/pokemon?limit=9
-export const fakePokemonListing = {
+export const fakePokemonListing: PokemonListingType = {
   count: 1126,
   next: 'https://pokeapi.co/api/v2/pokemon?offset=9&limit=9',
   previous: null,
@@ -17,7 +17,7 @@ export const fakePokemonListing = {
 };
 
 // partial data of https://pokeapi.co/api/v2/pokemon/1/
-export const fakePokemonDetailData: pokemonDetailType = {
+export const fakePokemonDetailData: PokemonDetailType = {
   id: 1,
   name: 'bulbasaur',
   height: 7,
@@ -38,21 +38,31 @@ export const fakePokemonDetailData: pokemonDetailType = {
   },
 };
 
-export interface pokemonDetailType {
+export interface PokemonListingType {
+  count: number;
+  next: string;
+  previous: string | null;
+  results: {
+    name: string;
+    url: string;
+  }[];
+}
+
+export interface PokemonDetailType {
   id: number;
   name: string;
   height: number;
   weight: number;
   types: {
     slot: number;
-    type: pokemonType;
+    type: PokemonType;
   }[];
   sprites: {
     front_default: string;
   };
 }
 
-export interface pokemonType {
+export interface PokemonType {
   name: string;
   url: string;
 }

@@ -1,14 +1,18 @@
 import { usePokemonListQuery } from "../app/store";
 
-function PokemonList({ onPokemonSelected }) {
-  const { data, error, isLoading } = usePokemonListQuery();
+type PokemonListProps = {
+  onPokemonSelected: (name: string) => void;
+};
 
-  if (isLoading) {
+function PokemonList({ onPokemonSelected }: PokemonListProps) {
+  const { data, error, isLoading, isUninitialized } = usePokemonListQuery();
+
+  if (isUninitialized || isLoading) {
     return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>Error</p>;
   }
 
   return (

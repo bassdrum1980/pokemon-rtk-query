@@ -1,13 +1,19 @@
 import { usePokemonDetailsQuery } from "../app/store";
 
-function PokemonDetails() {
-  const { data, error, isLoading } = usePokemonDetailsQuery();
+type PokemonDetailsProps = {
+  pokemonName: string;
+};
 
-  if (isLoading) {
+function PokemonDetails({ pokemonName }: PokemonDetailsProps) {
+  const { data, error, isLoading, isUninitialized } = usePokemonDetailsQuery({
+    name: pokemonName,
+  });
+
+  if (isUninitialized || isLoading) {
     return <p>Loading...</p>;
   }
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>Error</p>;
   }
 
   return (
