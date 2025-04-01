@@ -1,7 +1,15 @@
-import { fakePokemonListing } from "../data/pokemon";
+import { usePokemonListQuery } from "../app/store";
 
 function PokemonList({ onPokemonSelected }) {
-  const data = fakePokemonListing;
+  const { data, error, isLoading } = usePokemonListQuery();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <article>

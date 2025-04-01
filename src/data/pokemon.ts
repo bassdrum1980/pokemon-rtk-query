@@ -17,7 +17,7 @@ export const fakePokemonListing = {
 };
 
 // partial data of https://pokeapi.co/api/v2/pokemon/1/
-export const fakePokemonDetailData = {
+export const fakePokemonDetailData: pokemonDetailType = {
   id: 1,
   name: 'bulbasaur',
   height: 7,
@@ -37,3 +37,22 @@ export const fakePokemonDetailData = {
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
   },
 };
+
+export interface pokemonDetailType {
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  types: {
+    slot: number;
+    type: pokemonType;
+  }[];
+  sprites: {
+    front_default: string;
+  };
+}
+
+export interface pokemonType {
+  name: string;
+  url: string;
+}

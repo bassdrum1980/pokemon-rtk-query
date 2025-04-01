@@ -1,7 +1,14 @@
-import { fakePokemonDetailData } from "../data/pokemon";
+import { usePokemonDetailsQuery } from "../app/store";
 
-function PokemonDetails({ pokemonName }) {
-  const data = fakePokemonDetailData;
+function PokemonDetails() {
+  const { data, error, isLoading } = usePokemonDetailsQuery();
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
     <article>
