@@ -1,4 +1,4 @@
-import { usePokemonDetailsQuery } from "../app/store";
+import { usePokemonDetailsQuery } from "../api/pokemonApi";
 
 type PokemonDetailsProps = {
   pokemonName: string;

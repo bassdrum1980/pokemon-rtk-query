@@ -1,4 +1,4 @@
-import { usePokemonListQuery } from "../app/store";
+import { usePokemonListQuery } from "../api/pokemonApi";
 
 type PokemonListProps = {
   onPokemonSelected: (name: string) => void;

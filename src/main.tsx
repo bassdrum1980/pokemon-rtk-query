@@ -1,14 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ApiProvider } from '@reduxjs/toolkit/query/react'
+import { Provider } from 'react-redux';
 import App from './App.tsx'
-import { pokemonApi } from './app/store.ts'
+import { store } from './app/store.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ApiProvider api={pokemonApi}>
+    <Provider store={store}>
       <App />
-    </ApiProvider>
+    </Provider>
 
   </StrictMode>,
 )

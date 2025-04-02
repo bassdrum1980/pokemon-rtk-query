@@ -1,27 +1,13 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { PokemonListingType, PokemonDetailType } from '../data/pokemon';
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { pokemonApi } from '../api/pokemonApi';
 
-export const pokemonApi = createApi({
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://pokeapi.co/api/v2',
-  }),
-  endpoints: (build) => ({
-    pokemonList: build.query<PokemonListingType, void>({
-      query() {
-        return {
-          url: '/pokemon',
-          params: {
-            limit: 11,
-          },
-        };
-      },
-    }),
-    pokemonDetails: build.query<PokemonDetailType, { name: string }>({
-      query({ name }) {
-        return `/pokemon/${name}`;
-      },
-    }),
-  }),
+export const store = configureStore({
+  reducer: {
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(pokemonApi.middleware),
 });
 
-export const { usePokemonListQuery, usePokemonDetailsQuery } = pokemonApi;
+setupListeners(store.dispatch);
